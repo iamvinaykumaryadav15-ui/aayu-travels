@@ -59,10 +59,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gradient-overlay {
-            background: linear-gradient(to top, rgba(11, 44, 93, 0.9), rgba(11, 44, 93, 0.4));
-        }
-
+        
         /* Animations */
         .reveal-on-scroll {
             opacity: 0;
@@ -97,19 +94,6 @@
             transform: translateY(-8px);
         }
 
-        /* Accordion */
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .faq-item.active .faq-content {
-            max-height: 200px; /* Adjust based on content */
-        }
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
         .smooth-scroll { scroll-behavior: smooth; }
     </style>
 </head>
@@ -124,6 +108,7 @@
             </div>
             <div class="font-bold text-brandYellow text-sm tracking-widest uppercase">“जय गुरुदेव”</div>
             <div class="flex gap-6">
+                <!-- Keep literal phone numbers as tel links for copy-pasting/calling directly -->
                 <a href="tel:9412818304" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-phone-alt text-brandYellow"></i> 9412818304</a>
                 <a href="tel:9897510400" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-mobile-alt text-brandYellow"></i> 9897510400</a>
             </div>
@@ -157,8 +142,8 @@
 
             <!-- CTA Button -->
             <div class="hidden lg:block">
-                <a href="#routes" class="gradient-primary text-brandBlueDark px-6 py-2.5 rounded-full font-bold hover:shadow-glow transition transform hover:-translate-y-0.5 text-sm uppercase tracking-wider border border-white/20">
-                    Book Now
+                <a href="https://wa.me/919412818304?text=Hi, I want to book a ticket." target="_blank" class="gradient-primary text-brandBlueDark px-6 py-2.5 rounded-full font-bold hover:shadow-glow transition transform hover:-translate-y-0.5 text-sm uppercase tracking-wider border border-white/20">
+                    <i class="fab fa-whatsapp mr-1"></i> Book Now
                 </a>
             </div>
 
@@ -177,7 +162,9 @@
                 <a href="#packages" class="hover:text-brandRed flex items-center gap-3"><i class="fas fa-suitcase-rolling w-5 text-center"></i> Tour Packages</a>
                 <a href="#hotels" class="hover:text-brandRed flex items-center gap-3"><i class="fas fa-bed w-5 text-center"></i> Hotel Booking</a>
                 <a href="#contact" class="hover:text-brandRed flex items-center gap-3"><i class="fas fa-envelope w-5 text-center"></i> Contact</a>
-                <a href="tel:9412818304" class="bg-brandRed text-white text-center py-3 rounded-lg font-bold shadow-md active:scale-95 transition">Call Now</a>
+                <a href="https://wa.me/919412818304?text=Hi, I want to inquire." target="_blank" class="bg-brandRed text-white text-center py-3 rounded-lg font-bold shadow-md active:scale-95 transition">
+                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp Now
+                </a>
             </nav>
         </div>
     </header>
@@ -204,7 +191,7 @@
 
             <!-- Booking Widget Mockup -->
             <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 md:p-6 max-w-5xl mx-auto shadow-2xl reveal-on-scroll">
-                <form onsubmit="event.preventDefault(); window.location.href='#contact'" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <form onsubmit="event.preventDefault(); bookHero();" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                     <div class="relative group">
                         <label class="block text-white text-xs font-bold uppercase mb-1 ml-1 opacity-80">From</label>
                         <div class="flex items-center bg-white rounded-lg overflow-hidden h-12">
@@ -217,7 +204,7 @@
                         <label class="block text-white text-xs font-bold uppercase mb-1 ml-1 opacity-80">To</label>
                         <div class="flex items-center bg-white rounded-lg overflow-hidden h-12">
                             <i class="fas fa-location-arrow text-brandOrangeStart pl-4"></i>
-                            <select class="w-full px-3 py-2 text-gray-800 font-semibold bg-transparent outline-none cursor-pointer hover:bg-gray-50 transition">
+                            <select id="hero-to" class="w-full px-3 py-2 text-gray-800 font-semibold bg-transparent outline-none cursor-pointer hover:bg-gray-50 transition">
                                 <option>Jaipur</option>
                                 <option>Mehandipur Balaji</option>
                                 <option>Khatu Shyam Ji</option>
@@ -231,13 +218,13 @@
                         <label class="block text-white text-xs font-bold uppercase mb-1 ml-1 opacity-80">Date</label>
                         <div class="flex items-center bg-white rounded-lg overflow-hidden h-12">
                             <i class="fas fa-calendar-alt text-brandBlue pl-4"></i>
-                            <input type="date" class="w-full px-3 py-2 text-gray-800 bg-transparent outline-none cursor-pointer">
+                            <input type="date" id="hero-date" class="w-full px-3 py-2 text-gray-800 bg-transparent outline-none cursor-pointer">
                         </div>
                     </div>
 
                     <div class="relative flex items-end">
                         <button type="submit" class="w-full h-12 gradient-primary text-brandBlueDark font-bold rounded-lg hover:shadow-glow transition-all uppercase tracking-wide flex items-center justify-center gap-2">
-                            Check Availability <i class="fas fa-search"></i>
+                            Check Availability <i class="fab fa-whatsapp"></i>
                         </button>
                     </div>
                 </form>
@@ -301,7 +288,9 @@
                             <span class="text-gray-700"><strong>Punctuality:</strong> On-time departures and arrivals.</span>
                         </li>
                     </ul>
-                    <a href="#contact" class="inline-flex items-center gap-2 text-brandRed font-bold hover:gap-4 transition-all">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://wa.me/919412818304?text=Hi, I want to know more about Aayu Travels." target="_blank" class="inline-flex items-center gap-2 text-brandRed font-bold hover:gap-4 transition-all">
+                        <i class="fab fa-whatsapp"></i> Chat With Us <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -343,7 +332,9 @@
                             <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Dep: 9:00 PM</li>
                             <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper / Seater</li>
                         </ul>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">Book Seat</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Jaipur." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
                     </div>
                 </div>
 
@@ -373,7 +364,9 @@
                             <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Dep: 9:00 PM</li>
                             <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper / Seater</li>
                         </ul>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">Book Seat</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Mehandipur Balaji." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
                     </div>
                 </div>
 
@@ -403,7 +396,9 @@
                             <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Dep: 9:00 PM</li>
                             <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper / Seater</li>
                         </ul>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">Book Seat</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Khatu Shyam Ji." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
                     </div>
                 </div>
 
@@ -433,7 +428,9 @@
                             <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Dep: 9:00 PM</li>
                             <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper</li>
                         </ul>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">Book Seat</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Jodhpur." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
                     </div>
                 </div>
 
@@ -462,7 +459,41 @@
                             <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Dep: 9:00 PM</li>
                             <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper</li>
                         </ul>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">Book Seat</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Ajmer Sharif." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
+                    </div>
+                </div>
+
+                <!-- New Route: Haridwar/Dehradun -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft group service-card reveal-on-scroll">
+                    <div class="h-60 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1583345237708-7f938fcc8a86?auto=format&fit=crop&q=80&w=600" alt="Haridwar" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute bottom-4 left-4 z-20">
+                            <span class="text-brandYellow text-xs font-bold uppercase mb-1 block">Mountains & Ganga</span>
+                            <h3 class="text-white text-xl font-bold">Haridwar / Dehradun</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 uppercase">From</div>
+                                <div class="font-bold text-brandBlue">Aligarh</div>
+                            </div>
+                            <i class="fas fa-bus text-brandRed animate-pulse"></i>
+                            <div class="text-center">
+                                <div class="text-xs text-gray-500 uppercase">To</div>
+                                <div class="font-bold text-brandBlue">Rishikesh</div>
+                            </div>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                            <li><i class="far fa-clock text-brandOrangeStart w-5"></i> Daily Service</li>
+                            <li><i class="fas fa-chair text-brandOrangeStart w-5"></i> AC Sleeper</li>
+                        </ul>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a bus seat for Haridwar/Rishikesh/Dehradun." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition shadow-md">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Seat
+                        </a>
                     </div>
                 </div>
 
@@ -473,7 +504,9 @@
                     </div>
                     <h3 class="text-brandBlueDark text-2xl font-bold mb-2">Custom Booking?</h3>
                     <p class="text-brandBlueDark/80 mb-6">Need a full bus for a marriage or tour?</p>
-                    <a href="tel:9412818304" class="bg-brandBlue text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">Call Us Now</a>
+                    <a href="https://wa.me/919412818304?text=Hi, I need a custom bus booking for a marriage/tour." target="_blank" class="bg-brandBlue text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        <i class="fab fa-whatsapp mr-1"></i> Chat Now
+                    </a>
                 </div>
             </div>
 
@@ -510,7 +543,7 @@
         </div>
     </section>
 
-    <!-- VEHICLE RENTALS SECTION (UPDATED) -->
+    <!-- VEHICLE RENTALS SECTION -->
     <section id="rentals" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal-on-scroll">
@@ -532,7 +565,9 @@
                             <span class="text-xl opacity-80">/ km</span>
                         </div>
                         <p class="text-gray-300 text-sm mb-6">Applicable on all sedan and standard SUV car types for outstation trips.</p>
-                        <a href="#contact" class="inline-block w-full text-center bg-white text-brandBlueDark font-bold py-3 rounded-lg hover:bg-brandYellow transition">Book Car</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a Luxury Car at 13/km." target="_blank" class="inline-block w-full text-center bg-white text-brandBlueDark font-bold py-3 rounded-lg hover:bg-brandYellow transition">
+                            <i class="fab fa-whatsapp mr-1"></i> Book Car
+                        </a>
                     </div>
                 </div>
 
@@ -548,12 +583,19 @@
                             <div class="font-bold text-gray-700">45 Seater</div>
                             <div class="text-2xl font-bold text-brandBlue">₹55 <span class="text-sm text-gray-400 font-normal">/km</span></div>
                         </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-3">
                             <div class="font-bold text-gray-700">60 Seater</div>
                             <div class="text-2xl font-bold text-brandBlue">₹65 <span class="text-sm text-gray-400 font-normal">/km</span></div>
                         </div>
+                        <div class="flex justify-between items-center">
+                            <div class="font-bold text-gray-700">AC Sleeper</div>
+                            <div class="text-2xl font-bold text-brandBlue">₹90 <span class="text-sm text-gray-400 font-normal">/km</span></div>
+                        </div>
                     </div>
-                    <a href="#contact" class="inline-block w-full text-center bg-brandBlue text-white font-bold py-3 rounded-lg hover:bg-brandBlueDark transition mt-6">Book Bus</a>
+                    <div class="text-xs text-gray-500 mt-3 text-center italic">* Toll & Parking Extra</div>
+                    <a href="https://wa.me/919412818304?text=Hi, I want to charter a bus." target="_blank" class="inline-block w-full text-center bg-brandBlue text-white font-bold py-3 rounded-lg hover:bg-brandBlueDark transition mt-4">
+                        <i class="fab fa-whatsapp mr-1"></i> Book Bus
+                    </a>
                 </div>
 
                 <!-- Tempo Traveller Options -->
@@ -567,7 +609,9 @@
                         <div class="bg-white/20 rounded p-2 text-center font-bold">22 Seater</div>
                         <div class="col-span-2 bg-white/20 rounded p-2 text-center font-bold">26 Seater Mini Bus</div>
                     </div>
-                    <a href="#contact" class="inline-block w-full text-center bg-brandBlueDark text-white font-bold py-3 rounded-lg hover:bg-opacity-90 transition">Check Availability</a>
+                    <a href="https://wa.me/919412818304?text=Hi, I want to book a Tempo Traveller." target="_blank" class="inline-block w-full text-center bg-brandBlueDark text-white font-bold py-3 rounded-lg hover:bg-opacity-90 transition">
+                        <i class="fab fa-whatsapp mr-1"></i> Check Availability
+                    </a>
                 </div>
             </div>
 
@@ -582,7 +626,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brandBlue mb-2">Sedan (Dzire/Etios)</h3>
                         <p class="text-sm text-gray-500 mb-4">Budget friendly comfort.</p>
-                        <a href="#contact" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a Sedan (Dzire/Etios)." target="_blank" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
                     </div>
                 </div>
 
@@ -595,7 +639,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brandBlue mb-2">Innova Crysta</h3>
                         <p class="text-sm text-gray-500 mb-4">Premium family travel.</p>
-                        <a href="#contact" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book an Innova Crysta." target="_blank" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
                     </div>
                 </div>
 
@@ -608,7 +652,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brandBlue mb-2">Luxury Bus</h3>
                         <p class="text-sm text-gray-500 mb-4">32, 45 & 60 Seater Options.</p>
-                        <a href="#contact" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a Luxury Bus." target="_blank" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
                     </div>
                 </div>
 
@@ -621,14 +665,14 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-brandBlue mb-2">Tempo Traveller</h3>
                         <p class="text-sm text-gray-500 mb-4">Force Urbania & Winger.</p>
-                        <a href="#contact" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want to book a Tempo Traveller." target="_blank" class="block w-full text-center border border-brandBlue text-brandBlue py-2 rounded-lg font-bold hover:bg-brandBlue hover:text-white transition">Book Now</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TOUR PACKAGES SECTION (NEW) -->
+    <!-- TOUR PACKAGES SECTION -->
     <section id="packages" class="py-20 bg-gray-50 relative">
         <div class="absolute inset-0 bg-brandBlueDark/5"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -655,7 +699,9 @@
                             <span><i class="far fa-clock text-brandRed mr-1"></i> 6 Days / 5 Nights</span>
                             <span><i class="fas fa-map-marker-alt text-brandRed mr-1"></i> 3 Cities</span>
                         </div>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">Get Quote</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want a quote for Royal Rajasthan Package." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">
+                            <i class="fab fa-whatsapp mr-1"></i> Get Quote
+                        </a>
                     </div>
                 </div>
 
@@ -675,7 +721,9 @@
                             <span><i class="far fa-clock text-brandRed mr-1"></i> 3 Days / 2 Nights</span>
                             <span><i class="fas fa-map-marker-alt text-brandRed mr-1"></i> 3 Temples</span>
                         </div>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">Get Quote</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want a quote for Spiritual Journey Package." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">
+                            <i class="fab fa-whatsapp mr-1"></i> Get Quote
+                        </a>
                     </div>
                 </div>
 
@@ -695,34 +743,52 @@
                             <span><i class="far fa-clock text-brandRed mr-1"></i> 4 Days / 3 Nights</span>
                             <span><i class="fas fa-map-marker-alt text-brandRed mr-1"></i> 3 Cities</span>
                         </div>
-                        <a href="#contact" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">Get Quote</a>
+                        <a href="https://wa.me/919412818304?text=Hi, I want a quote for Golden Triangle Package." target="_blank" class="block w-full text-center bg-brandBlue text-white py-3 rounded-lg font-bold hover:bg-brandBlueDark transition">
+                            <i class="fab fa-whatsapp mr-1"></i> Get Quote
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- HOTEL BOOKING SERVICE (REPLACED PARCEL) -->
-    <section id="hotels" class="py-20 bg-white">
-                            <input type="tel" placeholder="Phone Number" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition" required>
+    <!-- HOTEL BOOKING / CONTACT SERVICE -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+             <div class="text-center mb-16 reveal-on-scroll">
+                <span class="text-brandRed font-bold uppercase tracking-wider text-sm">Get in Touch</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-brandBlue mt-2">Book Your Trip</h2>
+                <div class="w-20 h-1.5 gradient-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Enquiry Form -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 reveal-on-scroll">
+                    <h3 class="text-2xl font-bold text-brandBlue mb-6">Send Enquiry</h3>
+                    <form onsubmit="event.preventDefault(); sendContactForm();" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <input type="text" id="contact-name" placeholder="Your Name" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition" required>
+                            <input type="tel" id="contact-phone" placeholder="Phone Number" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition" required>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <input type="text" placeholder="Pickup City" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
-                            <input type="text" placeholder="Drop City" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
+                            <input type="text" id="contact-pickup" placeholder="Pickup City" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
+                            <input type="text" id="contact-drop" placeholder="Drop City" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
                         </div>
-                        <select class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
+                        <select id="contact-type" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition">
                             <option>General Enquiry</option>
                             <option>Bus Booking</option>
                             <option>Hotel Booking</option>
                             <option>Full Tour Package</option>
                         </select>
-                        <textarea rows="4" placeholder="Your Message" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition"></textarea>
-                        <button type="submit" class="w-full gradient-primary text-brandBlueDark font-bold py-4 rounded-lg hover:shadow-lg transition transform hover:-translate-y-1">SEND MESSAGE</button>
+                        <textarea id="contact-msg" rows="4" placeholder="Your Message" class="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-lg focus:border-brandOrangeStart focus:ring-1 focus:ring-brandOrangeStart outline-none transition"></textarea>
+                        <button type="submit" class="w-full gradient-primary text-brandBlueDark font-bold py-4 rounded-lg hover:shadow-lg transition transform hover:-translate-y-1">
+                            <i class="fab fa-whatsapp mr-2"></i> SEND ON WHATSAPP
+                        </button>
                     </form>
                 </div>
 
                 <!-- Info -->
-                <div class="bg-gray-100 p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+                <div class="bg-gray-100 p-8 md:p-12 flex flex-col justify-between relative overflow-hidden rounded-2xl reveal-on-scroll">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-brandYellow/10 rounded-full -mr-32 -mt-32"></div>
                     <div class="absolute bottom-0 left-0 w-64 h-64 bg-brandRed/10 rounded-full -ml-32 -mb-32"></div>
                     
@@ -758,6 +824,17 @@
                             width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy">
                         </iframe>
                     </div>
+
+                    <!-- Payment QR Section -->
+                    <div class="mt-8 pt-6 border-t border-gray-300">
+                        <h4 class="font-bold text-brandBlue mb-4 flex items-center gap-2"><i class="fas fa-qrcode text-brandRed"></i> Scan to Pay</h4>
+                        <div class="bg-white p-4 rounded-xl shadow-lg inline-block border-2 border-brandBlue/10">
+                             <!-- Using the requested filename paytm.jpg -->
+                             <img src="paytm.jpg" alt="Paytm QR Code" class="w-40 h-40 object-contain mx-auto border border-gray-100 rounded">
+                             <p class="text-center text-xs font-bold text-brandBlue mt-2 bg-gray-50 py-1 rounded">Aayu Travels</p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2"><i class="fas fa-shield-alt text-green-600"></i> Secure Payment via Paytm/UPI</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -779,7 +856,7 @@
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandRed transition text-white"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandRed transition text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandRed transition text-white"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/919412818304" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brandRed transition text-white"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -801,23 +878,11 @@
                 <div>
                     <h3 class="text-lg font-bold text-white mb-6 border-b border-gray-700 pb-2 inline-block">Our Services</h3>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Bus Charter (42/km+)</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Car Rental (13/km)</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Tour Packages</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Hotel Booking</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Corporate Tours</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3 -->
-                <div>
-                    <h3 class="text-lg font-bold text-white mb-6 border-b border-gray-700 pb-2 inline-block">Our Services</h3>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> AC Sleeper Bus</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Luxury Seater</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Car Rental</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Hotel Booking</a></li>
-                        <li><a href="#" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Full Bus Booking</a></li>
+                        <li><a href="#rentals" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Bus Charter (42/km+)</a></li>
+                        <li><a href="#rentals" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Car Rental (13/km)</a></li>
+                        <li><a href="#packages" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Tour Packages</a></li>
+                        <li><a href="#hotels" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Hotel Booking</a></li>
+                        <li><a href="#contact" class="hover:text-brandYellow transition flex items-center gap-2"><i class="fas fa-check text-xs text-brandRed"></i> Corporate Tours</a></li>
                     </ul>
                 </div>
 
@@ -829,8 +894,8 @@
                         <p><strong class="text-white">GSTIN:</strong> 09NHNPS5976Q1ZC</p>
                     </div>
                     <div class="mt-6">
-                        <a href="tel:9412818304" class="gradient-primary text-brandBlueDark px-4 py-2 rounded font-bold text-sm inline-flex items-center gap-2">
-                            <i class="fas fa-phone-alt"></i> 24/7 Support
+                        <a href="https://wa.me/919412818304?text=Hi, I need 24/7 Support." target="_blank" class="gradient-primary text-brandBlueDark px-4 py-2 rounded font-bold text-sm inline-flex items-center gap-2">
+                            <i class="fab fa-whatsapp"></i> 24/7 Support
                         </a>
                     </div>
                 </div>
@@ -868,21 +933,7 @@
             menu.classList.toggle('hidden');
         });
 
-        // 2. FAQ Accordion Logic
-        function toggleFaq(button) {
-            const item = button.parentElement;
-            const isActive = item.classList.contains('active');
-            
-            // Close all
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            
-            // Toggle clicked
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        }
-
-        // 3. Scroll Animations (Intersection Observer)
+        // 2. Scroll Animations (Intersection Observer)
         const observerOptions = {
             threshold: 0.1
         };
@@ -899,7 +950,7 @@
             observer.observe(el);
         });
 
-        // 4. Hero Background Slider
+        // 3. Hero Background Slider
         const heroBg = document.getElementById('hero-bg');
         const images = [
             'url("https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=1920")', // Bus
@@ -915,6 +966,46 @@
             currentImage = (currentImage + 1) % images.length;
             heroBg.style.backgroundImage = images[currentImage];
         }, 5000);
+
+        // 4. WhatsApp Integration Functions
+        const waNumber = "919412818304";
+
+        function openWhatsApp(message) {
+            const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Handle Hero Form
+        function bookHero() {
+            const to = document.getElementById('hero-to').value;
+            const date = document.getElementById('hero-date').value;
+            let msg = `Hi Aayu Travels, I want to check availability for a bus from Aligarh to ${to}`;
+            if(date) msg += ` on ${date}`;
+            msg += ".";
+            openWhatsApp(msg);
+        }
+
+        // Handle Contact Form
+        function sendContactForm() {
+            const name = document.getElementById('contact-name').value;
+            const phone = document.getElementById('contact-phone').value;
+            const pickup = document.getElementById('contact-pickup').value;
+            const drop = document.getElementById('contact-drop').value;
+            const type = document.getElementById('contact-type').value;
+            const message = document.getElementById('contact-msg').value;
+
+            if(!name || !phone) {
+                alert("Please enter Name and Phone Number");
+                return;
+            }
+
+            let msg = `*New Enquiry*\nType: ${type}\nName: ${name}\nPhone: ${phone}`;
+            if(pickup) msg += `\nPickup: ${pickup}`;
+            if(drop) msg += `\nDrop: ${drop}`;
+            if(message) msg += `\nMessage: ${message}`;
+
+            openWhatsApp(msg);
+        }
 
     </script>
 </body>
